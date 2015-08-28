@@ -3,9 +3,14 @@
 
 using namespace std;
 
-Ghosts::Ghosts(bool ghost, sf::Texture& ghostsT, float xPos, float yPos):notGhost(ghost), x(xPos), y(yPos){
+Ghosts::Ghosts(sf::Texture& ghostsT, float xPos, float yPos, string enemy):x(xPos), y(yPos), enemyName(enemy){
+    notGhost = true;
     ghostEnemy = sf::Sprite(ghostsT);
-    ghostEnemy.setTextureRect(sf::IntRect(197,70,120,115));
+    if(enemyName == "blinky") ghostEnemy.setTextureRect(sf::IntRect(197,70,120,115));
+    else if(enemyName == "pinky") ghostEnemy.setTextureRect(sf::IntRect(197,196,120,115));
+    else if(enemyName == "inky") ghostEnemy.setTextureRect(sf::IntRect(197,324,120,115));
+    else ghostEnemy.setTextureRect(sf::IntRect(197,451,120,115));
+    ghostEnemy.setScale(sf::Vector2f(0.5,0.5));
     ghostEnemy.setPosition(sf::Vector2f(x,y));
 }
 
@@ -14,5 +19,18 @@ void Ghosts::ghostAi(){
 }
 
 void Ghosts::moveAnimation(int amount){
-    ghostEnemy.setTextureRect(sf::IntRect(197+amount,70,120,115));
+    if(notGhost == false) ghostEnemy.setTextureRect(sf::IntRect(197+amount,576,120,115));
+    else if(enemyName == "blinky") ghostEnemy.setTextureRect(sf::IntRect(197+amount,70,120,115));
+    else if(enemyName == "pinky") ghostEnemy.setTextureRect(sf::IntRect(197+amount,196,120,115));
+    else if(enemyName == "inky") ghostEnemy.setTextureRect(sf::IntRect(197+amount,324,120,115));
+    else ghostEnemy.setTextureRect(sf::IntRect(197+amount,451,120,115));
+}
+
+void Ghosts::changeAppearance(){
+    notGhost = !notGhost;
+    if(notGhost == false) ghostEnemy.setTextureRect(sf::IntRect(197,576,120,115));
+    else if(enemyName == "blinky") ghostEnemy.setTextureRect(sf::IntRect(197,70,120,115));
+    else if(enemyName == "pinky") ghostEnemy.setTextureRect(sf::IntRect(197,196,120,115));
+    else if(enemyName == "inky") ghostEnemy.setTextureRect(sf::IntRect(197,324,120,115));
+    else ghostEnemy.setTextureRect(sf::IntRect(197,451,120,115));
 }
