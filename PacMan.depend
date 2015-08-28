@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1440668292 source:/home/aprusa/Documents/PacMan/PacMan.cpp
+	<SFML/Graphics.hpp>
+	"Ghosts.h"
+
+1440757513 /home/aprusa/Documents/PacMan/Ghosts.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1440588128 source:/home/aprusa/Documents/PacMan/Ghosts.cpp
+	<SFML/Graphics.hpp>
+	"Ghosts.h"
+

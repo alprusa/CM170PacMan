@@ -39,6 +39,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Ghosts.cpp" />
+		<Unit filename="Ghosts.h" />
 		<Unit filename="PacMan.cpp" />
 		<Unit filename="cb.bmp" />
 		<Extensions>
