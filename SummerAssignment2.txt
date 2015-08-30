@@ -1,0 +1,57 @@
+Second C++/SFML assignment
+
+The second game implementation assignment using C++/SFML is as follows:
+
+ 
+
+You are to re-implement the classic game of Pac-Mac, which you can find here:
+http://www.freepacman.org/
+
+ 
+
+Key features to implement:
+
+ 
+
+* Score feature
+
+* Power pills and vulnerable blue ghosts
+
+* Correct ghost AI (see:
+http://gameinternals.com/post/2072558330/understanding-pac-man-ghost-behavior and
+http://home.comcast.net/~jpittman2/pacman/pacmandossier.html for detailed descriptions)
+including chase/scatter modes
+
+* Non-sticky movement (if I hit up and above me is a wall, I don't stick on the wall, and I
+keep going)
+
+* Level startup music
+
+* Waka-waka sound
+
+* Ghost eating sound
+
+* Player death sound
+
+* At least two levels
+
+* Game resets to title screen when player runs out of lives
+
+* Tunnel from one side to the other side
+
+ 
+
+Extra-credit: implementing fruit
+
+ 
+
+You should mimic the look of the original Pac-Man game as much as possible.
+
+ 
+
+As with the Pong game, when complete, submit a link to a gameplay video and a link to your code
+on GitHub in the comments below.
+
+ 
+
+Due date for this is Friday, August 7. Good luck!
