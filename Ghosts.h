@@ -8,17 +8,20 @@ using namespace std;
 
 class Ghosts{
     private:
-        bool notGhost;
-        sf::Sprite ghostEnemy;
-        string enemyName;
         float x;
         float y;
+        bool notGhost;
+        sf::Sprite ghostEnemy;
+        sf::Texture ghostsT;
+        string enemyName;
+
+        void moveAnimation(int shift);
     public:
-        Ghosts(sf::Texture& ghostsT, float xPos, float yPos, string enemy);
+        Ghosts(float xPos, float yPos, string enemy);
         ~Ghosts(){cout << "The ghost is dead" << endl;}
         void ghostAi();
         sf::Sprite getSprite(){return ghostEnemy;}
-        void moveAnimation(int amount);
+        void moveGhosts(int speed);
         void changeAppearance();
 };
 

@@ -1,35 +1,57 @@
 #include <SFML/Graphics.hpp>
 #include "Ghosts.h"
 #include "PacManSprite.h"
+#include "TileMap.h"
 
 int main()
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(700, 800), "SFML window");
 
-    // Load pacMan enemies to display
-    sf::Texture ghostsT;
-    if (!ghostsT.loadFromFile("PACMANGhosts.png"))
-        return EXIT_FAILURE;
+    //create the game Level1
+     // define the level with an array of tile indices
+    const int level[] =
+    {
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,2,2,0,2,2,2,0,2,2,0,2,2,0,2,2,2,2,2,2,2,0,
+        0,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,
+        0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,
+        0,2,2,2,2,2,2,2,0,0,0,0,0,2,2,2,2,2,0,2,2,0,
+        0,0,0,2,2,0,2,2,2,2,0,2,2,2,2,0,2,2,0,2,2,0,
+        0,2,2,2,2,0,2,2,2,2,0,2,2,2,2,0,2,2,2,2,2,0,
+        0,2,2,2,2,0,0,0,2,2,0,2,2,0,0,0,2,2,2,2,2,0,
+        0,0,0,2,2,0,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,
+        2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,0,2,2,0,2,2,2,
+        0,0,0,2,2,0,2,2,0,1,1,1,0,2,2,0,2,2,0,0,0,0,
+        2,2,2,2,2,2,2,2,0,2,2,2,0,2,2,2,2,2,2,2,2,2,
+        2,2,2,2,2,2,2,2,0,2,2,2,0,2,2,2,2,2,2,2,2,2,
+        0,0,0,2,2,0,2,2,0,0,0,0,0,2,2,0,2,2,0,0,0,0,
+        2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,0,2,2,0,2,2,2,
+        0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,
+        0,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,0,
+        0,2,2,2,2,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,2,0,
+        0,2,2,0,0,2,2,0,2,2,0,2,2,0,0,0,2,2,2,2,2,0,
+        0,2,2,2,0,2,2,2,2,2,0,2,2,2,0,2,2,2,2,2,2,0,
+        0,0,2,2,0,2,2,2,2,2,0,2,2,2,0,2,2,2,0,2,2,0,
+        0,0,2,2,0,2,2,0,0,0,0,0,2,2,0,2,2,0,0,2,2,0,
+        0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,
+        0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    };
+
+    // create the tilemap from the level definition
+    TileMap mapT;
+    if (!mapT.load("LevelWallColors.png", sf::Vector2u(32, 32), level, 22, 25)) //512, 256
+        return -1;
 
     //Create PacMans Enemies
-    Ghosts blinky(ghostsT, 5, 10,"blinky");
-    Ghosts pinky(ghostsT, 15, 150,"pinky");
-    Ghosts inky(ghostsT, 105, 250,"inky");
-    Ghosts clyde(ghostsT, 205, 350,"clyde");
-
-    //load the pacman texture
-    sf::Texture pacManText;
-    if (!pacManText.loadFromFile("PacManSheet.png"))
-        return EXIT_FAILURE;
+    Ghosts blinky(295, 350,"blinky");
+    Ghosts pinky(295, 380,"pinky");
+    Ghosts inky(340, 350,"inky");
+    Ghosts clyde(340, 380,"clyde");
 
     //Create PacMan
-    PacMan pM(pacManText, 250, 90);
-
-    //temp background color change
-    sf::RectangleShape fillerScreen(sf::Vector2f(800, 600));
-    fillerScreen.setFillColor(sf::Color::White);
-    fillerScreen.setPosition(0, 0);
+    PacMan pM(310, 460);
 
     //for the animations
     int animationMove = 0;
@@ -49,26 +71,30 @@ int main()
         // Clear screen
         window.clear();
 
-        window.draw(fillerScreen);//delete later
+        window.draw(mapT);
 
         // Draw the blinky
         window.draw(blinky.getSprite());
-        blinky.moveAnimation(animationMove);
+        blinky.moveGhosts(animationMove);
 
         // Draw the pinky
         window.draw(pinky.getSprite());
-        pinky.moveAnimation(animationMove);
+        pinky.moveGhosts(animationMove);
 
         // Draw the inky
         window.draw(inky.getSprite());
-        inky.moveAnimation(animationMove);
+        inky.moveGhosts(animationMove);
 
         // Draw the clyde
         window.draw(clyde.getSprite());
-        clyde.moveAnimation(animationMove);
+        clyde.moveGhosts(animationMove);
 
         //Draw PacMan
         window.draw(pM.getSprite());
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) pM.movePac(3,"left");
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) pM.movePac(3, "right");
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) pM.movePac(3, "up");
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) pM.movePac(3, "down");
 
         //to set the sift of the animation
         if(animationMove > 480)animationMove = 0;

@@ -41,7 +41,13 @@
 		</Compiler>
 		<Unit filename="Ghosts.cpp" />
 		<Unit filename="Ghosts.h" />
+		<Unit filename="PACMANGhosts.png" />
 		<Unit filename="PacMan.cpp" />
+		<Unit filename="PacManSheet.png" />
+		<Unit filename="PacManSprite.cpp" />
+		<Unit filename="PacManSprite.h" />
+		<Unit filename="TileMap.cpp" />
+		<Unit filename="TileMap.h" />
 		<Unit filename="cb.bmp" />
 		<Extensions>
 			<code_completion />
